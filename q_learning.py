@@ -1,6 +1,7 @@
 
 import numpy as np
 import matplotlib.pyplot as plt
+from matplotlib import colors
 
 def update_state(current_state, action):
     """
@@ -13,7 +14,7 @@ def update_state(current_state, action):
     else: return new_state
 
 
-def q_learning(gamma, alpha, episodes=1000):
+def q_learning(gamma, alpha, episodes=100):
     """
     Q learning algorithm for mouse round a clock problem.
     """
@@ -49,8 +50,14 @@ def q_learning(gamma, alpha, episodes=1000):
 
             # update curr state
             current_state = next_state
-        print(Q)
-        print("--")
+
+        # plot current episode
+        plt.title("".join(("Episode ", str(i))))
+        plt.imshow(Q, cmap='hot')
+        plt.pause(0.001)
+        plt.clf()
+
+    # plt.show()
     return Q
 
 
